@@ -1,6 +1,6 @@
 """Shared column definitions for the argan irrigation dataset.
 
-Keep this file in sync with the dataset builder (build_argan_dataset.py).
+Keep this file in sync with the data-generation schema.
 """
 
 FEATURES = [
