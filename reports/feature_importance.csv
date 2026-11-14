@@ -1,0 +1,15 @@
+feature,classifier_importance,regressor_importance,mean_importance
+soil_moisture_pct,0.41119,0.39277,0.40198
+et0_mm,0.15141,0.10219,0.1268
+soil_type,0.08827,0.08121,0.08474
+temp_max,0.07569,0.07538,0.07554
+tree_age_years,0.01735,0.10535,0.06135
+temp_min,0.05736,0.05771,0.05753
+day_of_year,0.04888,0.05454,0.05171
+rain_forecast_3d_mm,0.05708,0.02565,0.04136
+canopy_cover_pct,0.02065,0.03695,0.0288
+soil_depth_cm,0.03031,0.01878,0.02455
+trees_per_ha,0.01899,0.02307,0.02103
+rain_mm,0.01342,0.01138,0.0124
+month,0.00478,0.00888,0.00683
+argan_stage,0.00461,0.00614,0.00538

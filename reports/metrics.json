@@ -1,0 +1,98 @@
+{
+  "classifier": {
+    "accuracy": 0.8928571428571429,
+    "balanced_accuracy": 0.8510681374580449,
+    "precision": 0.7152103559870551,
+    "recall": 0.7809187279151943,
+    "f1": 0.7466216216216216,
+    "roc_auc": 0.9384251101669983,
+    "average_precision": 0.7901410814154408,
+    "brier_score": 0.07944029171435973,
+    "confusion_matrix": {
+      "tn": 1029,
+      "fp": 88,
+      "fn": 62,
+      "tp": 221
+    },
+    "predicted_positive_rate": 0.22071428571428572,
+    "actual_positive_rate": 0.20214285714285715
+  },
+  "classifier_baseline": {
+    "accuracy": 0.7978571428571428,
+    "f1": 0.0
+  },
+  "regressor": {
+    "r2": 0.4415933293108649,
+    "mae": 41.55575162954718,
+    "rmse": 75.3171043560355,
+    "median_absolute_error": 19.376428888241392,
+    "n": 1400
+  },
+  "regressor_baseline": {
+    "r2": -0.002134236832047387,
+    "mae": 63.27873510204082,
+    "rmse": 100.89769982815388,
+    "median_absolute_error": 41.176857142857145,
+    "n": 1400
+  },
+  "regressor_on_true_positive_rows": {
+    "r2": 0.2756851692879634,
+    "mae": 84.77905358994393,
+    "rmse": 132.4286629309119,
+    "median_absolute_error": 49.05037179209687,
+    "n": 283
+  },
+  "regressor_positive_only": {
+    "r2": 0.8381003554788518,
+    "mae": 41.41966103922904,
+    "rmse": 62.609646677565934,
+    "median_absolute_error": 23.370747573953793,
+    "n": 283
+  },
+  "dataset": {
+    "rows": 7000,
+    "plots": 140,
+    "n_train": 5600,
+    "n_test": 1400,
+    "positive_rate": 0.199,
+    "test_plots": 28,
+    "features": [
+      "day_of_year",
+      "month",
+      "temp_max",
+      "temp_min",
+      "rain_mm",
+      "et0_mm",
+      "rain_forecast_3d_mm",
+      "argan_stage",
+      "tree_age_years",
+      "trees_per_ha",
+      "canopy_cover_pct",
+      "soil_type",
+      "soil_depth_cm",
+      "soil_moisture_pct"
+    ],
+    "labels": [
+      "irrigation_L_per_tree",
+      "irrigate_yes_no"
+    ]
+  },
+  "model": {
+    "type": "RandomForestClassifier + RandomForestRegressor",
+    "classifier_params": {
+      "n_estimators": 600,
+      "max_features": 1.0,
+      "min_samples_leaf": 2,
+      "random_state": 42
+    },
+    "regressor_params": {
+      "n_estimators": 600,
+      "max_features": 0.66,
+      "min_samples_leaf": 3,
+      "random_state": 42
+    },
+    "split": "GroupShuffleSplit on plot_id",
+    "trained_at": "2026-11-14T20:03:38+00:00",
+    "random_state": 42
+  }
+}
