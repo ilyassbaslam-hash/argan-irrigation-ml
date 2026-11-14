@@ -7,9 +7,6 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 
-# Trained model artifacts (regenerate with: python train_model.py)
-models/*.joblib
-
 # Generated prediction files
 predictions*.csv
 

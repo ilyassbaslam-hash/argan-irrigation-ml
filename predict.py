@@ -83,12 +83,18 @@ def load_input(args: argparse.Namespace) -> pd.DataFrame:
     return pd.DataFrame(DEMO_ROWS)
 
 
-def load_models(model_dir: Path):
+def load_models(model_dir: Path, mode: str):
+    """Load only the models the selected mode needs.
+
+    The production path is two-stage and needs the classifier plus Regressor B.
+    Regressor A is a benchmark and is loaded only for --mode direct.
+    """
     files = {
         "classifier": model_dir / "irrigation_classifier.joblib",
-        "regressor": model_dir / "irrigation_regressor.joblib",
         "regressor_positive_only": model_dir / "irrigation_regressor_positive_only.joblib",
     }
+    if mode == "direct":
+        files["regressor"] = model_dir / "irrigation_regressor.joblib"
     bundles = {}
     for key, path in files.items():
         if not path.exists():
@@ -115,16 +121,15 @@ def main(argv=None) -> None:
     if not 0.0 < args.threshold < 1.0:
         sys.exit("[input] --threshold must be between 0 and 1")
 
-    bundles = load_models(args.model_dir)
+    bundles = load_models(args.model_dir, args.mode)
     clf_bundle = bundles["classifier"]
-    reg_bundle = bundles["regressor"]
     reg_pos_bundle = bundles["regressor_positive_only"]
     df = check_input(load_input(args))
     X = df[clf_bundle.get("features", FEATURES)]
 
     proba = clf_bundle["pipeline"].predict_proba(X)[:, 1]
     irrigate = (proba >= args.threshold).astype(int)
-    size_bundle = reg_pos_bundle if args.mode == "two-stage" else reg_bundle
+    size_bundle = reg_pos_bundle if args.mode == "two-stage" else bundles["regressor"]
     litres = size_bundle["pipeline"].predict(X)
 
     out = df.copy()

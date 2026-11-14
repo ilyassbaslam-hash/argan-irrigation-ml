@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """
-Train the two Random Forest models for the argan irrigation recommender.
+Train the Random Forest models for the argan irrigation recommender.
 
-  * irrigation_classifier.joblib -> irrigate_yes_no        (0 / 1)
-  * irrigation_regressor.joblib  -> irrigation_L_per_tree  (litres per tree)
+  * irrigation_classifier.joblib            -> irrigate_yes_no       (0 / 1)
+  * irrigation_regressor.joblib             -> litres, all rows      (benchmark)
+  * irrigation_regressor_positive_only.joblib -> litres, irrigation days
+
+The production app uses the classifier plus the positive-only regressor
+(Regressor B).  The all-rows regressor (Regressor A) is trained and reported
+only as a comparison.
 
 The 50 daily rows of one plot are strongly related, so the test set is built
 from *plots* the model never saw (GroupShuffleSplit on plot_id) whenever the
